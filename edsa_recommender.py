@@ -45,7 +45,7 @@ def main():
 
     # DO NOT REMOVE the 'Recommender System' option below, however,
     # you are welcome to add more options to enrich your app.
-    page_options = ["Recommender System","Solution Overview","EDA","Model Explination"]
+    page_options = ["Recommender System","Solution Overview","Explore the data"]
     st.sidebar.image("https://i.imgur.com/F7YegD6.gif")
     # -------------------------------------------------------------------
     # ----------- !! THIS CODE MUST NOT BE ALTERED !! -------------------
@@ -102,10 +102,24 @@ def main():
     # ------------- SAFE FOR ALTERING/EXTENSION -------------------
     if page_selection == "Solution Overview":
         st.title("Solution Overview")
-        st.write("Describe your winning approach on this page")    
+        st.image("https://storage.googleapis.com/kaggle-competitions/kaggle/33594/logos/header.png?t=2022-01-04-10-31-44")
+    
+        st.markdown("Firstly, we used Content-Based filtering to give a user a list of recommendations based on the movie input data. The recommender uses the similarity between movies to recommend a movie the user might like. Next we decided to use Collaborative Filtering to create a recommender model able to accurately predicting how a user will rate a movie they have not yet viewed, based on their historical preferences, as per the initial problem statement. With Collaborative Filtering we used numerous models and compared RMSE and the training times, but in the end, Singular Value Decomposition (SVD) outperformed the rest. We then trained SVD on all the data, moved to hyperparameter tuning, which we used in collaboration with Comet thus enabling us to do numerous parameter experiments and choose the best possible hyperpameters, which gave us a model which is able to accuratly predict movie ratings.")
     # You may want to add more sections here for aspects such as an EDA,
     # or to provide your business pitch.
 
+    if page_selection == "Explore the data":
+        st.image("https://i.imgur.com/gYuy9n6.png")
+        option =  st.sidebar.radio('What would you like to explore?', ['Directors with most movies directed','Actors with highest appearances','Top genres'])
+        if option == 'Directors with most movies directed':
+            st.subheader("Directors and how many movies they directed")
+            st.image("https://i.imgur.com/BQGM9BB.png")
+        if option == 'Actors with highest appearances':
+            st.subheader("Actors with highest appearances")
+            st.image("https://i.imgur.com/JRJ7llj.png")
+        if option == 'Top genres':
+            st.subheader("Top genres")
+            st.image("https://i.imgur.com/MNFSKlS.png")    
 
 if __name__ == '__main__':
     main()
